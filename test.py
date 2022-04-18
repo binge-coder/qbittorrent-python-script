@@ -23,6 +23,7 @@ for torrent in qbt_client.torrents_info():
 qbt_client.torrents.pause.all()
 
 '''
+
 qbt_client.log.main.warning()
 qbt_client.log.main.normal()
 
