@@ -1,6 +1,8 @@
+from decouple import config     #to get login details from .env 
 import qbittorrentapi
 
-qbt_client = qbittorrentapi.Client(host = "localhost:8080", username = "admin", password = "swagsadadesi")
+
+qbt_client = qbittorrentapi.Client(host = "localhost:8080", username = config('USER'), password = config('PASSWORD'))
 
 try:
     qbt_client.auth_log_in()
