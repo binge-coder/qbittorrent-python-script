@@ -14,11 +14,12 @@ from decouple import config     #to get login details from .env
 import qbittorrentapi
 import os # to get the file size
 
+shutdown = 0
 qbt_client = qbittorrentapi.Client(host = "localhost:8080", username = config('USER'), password = config('PASSWORD'))
 
 try:
     qbt_client.auth_log_in()
-except LoginFailed as e:
+except qbittorrentapi.LoginFailed as e:
     print(e)
 
 '''
@@ -32,14 +33,17 @@ qbt_client.torrents.pause.all()
 
 '''
 def getsize():
-    """ this funciton will be used to get the directory size """
+    """ this function will be used to get the directory size """
 
 
 
 
+# logging out
+qbittorrentapi.auth_log_out()
 
-auth_log_out()
-
+# shutdown the computer
+if shutdown == 1:
+    os.system("shutdown /s /d[u:]  /t 60 ") #this may not work or may malfunction
 
 
 
